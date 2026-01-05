@@ -4,8 +4,8 @@
    ══════════════════════════════════════════════════════════ */
 
 // Supabase Project Configuration
-const SUPABASE_URL = 'https://jbkervhccqsmjwndpppq.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impia2VydmhjY3FzbWp3bmRwcHBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1NzczMjksImV4cCI6MjA4MzE1MzMyOX0.2TNvNHJci4ss6PnuRpyZukOcxkswn7rV4BVQJZSKBHQ';
+const SUPABASE_URL = 'https://uoblzhpzmfkksveesela.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvYmx6aHB6bWZra3N2ZWVzZWxhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1OTMzNjQsImV4cCI6MjA4MzE2OTM2NH0.jcW42378J6g3xnNWJu_py9NEPOD0vR3DOYpfjF6u3SY';
 
 // Initialize Supabase Client
 // Import from CDN in HTML: <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
