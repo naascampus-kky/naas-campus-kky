@@ -1,14 +1,22 @@
 /* ══════════════════════════════════════════════════════════
-   ADMIN.JS - Complete admin dashboard with CRUD operations
+   ADMIN.JS - Complete admin dashboard with SECURITY
    ══════════════════════════════════════════════════════════ */
 
 import { supabase } from '../supabase/supabase-config.js';
+
+// 👇 ADMIN EMAILS - Add your admin emails here
+const ADMIN_EMAILS = [
+    'admin@naascampus.com',
+    'naaskky@gmail.com',
+    // Add more admin emails below:
+    // 'another-admin@email.com',
+];
 
 let currentEditingCourse = null;
 let currentEditingUpdate = null;
 
 document.addEventListener('DOMContentLoaded', async function() {
-    // Check authentication
+    // Check authentication and admin access
     await checkAuthentication();
     
     // Setup tabs
@@ -29,14 +37,34 @@ document.addEventListener('DOMContentLoaded', async function() {
     displayAdminEmail();
 });
 
-// Check if user is authenticated
+// Check if user is authenticated AND is admin
 async function checkAuthentication() {
     const { data: { session } } = await supabase.auth.getSession();
     
     if (!session) {
-        window.location.href = 'login.html';
+        // Not logged in
+        showToast('Please login first');
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 1000);
         return;
     }
+    
+    // Check if user is admin
+    const userEmail = session.user.email;
+    
+    if (!ADMIN_EMAILS.includes(userEmail)) {
+        // Logged in but NOT admin
+        showToast('Access Denied! You are not authorized to access admin panel.');
+        await supabase.auth.signOut();
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 2000);
+        return;
+    }
+    
+    // User is admin - access granted
+    console.log('✅ Admin access granted:', userEmail);
 }
 
 // Display admin email
@@ -164,7 +192,7 @@ async function loadCourses() {
                     <td>LKR ${Number(course.amount).toLocaleString()}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" onclick="editCourse('${course.id}')">Edit</button>
-                        <button class="btn btn-secondary btn-sm" onclick="deleteCourse('${course.id}', '${course.title}')">Delete</button>
+                        <button class="btn btn-secondary btn-sm" onclick="deleteCourse('${course.id}', '${course.title.replace(/'/g, "\\'")}')">Delete</button>
                     </td>
                 </tr>
             `).join('');
@@ -353,7 +381,7 @@ async function loadUpdates() {
                     <td>${new Date(update.date).toLocaleDateString()}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" onclick="editUpdate('${update.id}')">Edit</button>
-                        <button class="btn btn-secondary btn-sm" onclick="deleteUpdate('${update.id}', '${update.title}')">Delete</button>
+                        <button class="btn btn-secondary btn-sm" onclick="deleteUpdate('${update.id}', '${update.title.replace(/'/g, "\\'")}')">Delete</button>
                     </td>
                 </tr>
             `).join('');
