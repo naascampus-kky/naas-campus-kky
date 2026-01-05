@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission & Payment - NAAS Campus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/logo.webp" alt="NAAS Campus Logo" class="logo">
+                <h1 class="campus-name">NAAS CAMPUS</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="admission.html" class="nav-link active">Admission</a>
+                <a href="updates.html" class="nav-link">Updates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link btn-login">Login</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Admission & Payment Portal</h1>
+            <p>Complete your payment and submit proof via WhatsApp</p>
+        </div>
+    </section>
+
+    <!-- Payment Information Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-grid">
+                <!-- Bank Details Card -->
+                <div class="card payment-card">
+                    <h2>Bank Account Details</h2>
+                    <p class="payment-instruction">Transfer your course fee to the following account:</p>
+                    
+                    <div class="detail-item">
+                        <label>Account Name:</label>
+                        <div class="detail-value">
+                            <span class="copyable-text" id="accountName">NAAS CAMPUS</span>
+                            <button class="btn-copy" data-copy="accountName">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <label>Bank:</label>
+                        <div class="detail-value">
+                            <span class="copyable-text" id="bankName">Commercial Bank</span>
+                            <button class="btn-copy" data-copy="bankName">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <label>Account Number:</label>
+                        <div class="detail-value">
+                            <span class="copyable-text" id="accountNumber">1000902776</span>
+                            <button class="btn-copy" data-copy="accountNumber">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <label>Branch:</label>
+                        <div class="detail-value">
+                            <span class="copyable-text" id="branchName">Kattankudy</span>
+                            <button class="btn-copy" data-copy="branchName">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Card -->
+                <div class="card payment-card">
+                    <h2>Contact Information</h2>
+                    <p class="payment-instruction">For any payment queries, contact us:</p>
+                    
+                    <div class="detail-item">
+                        <label>WhatsApp:</label>
+                        <div class="detail-value">
+                            <span class="copyable-text" id="whatsapp">+94 75 150 1603</span>
+                            <button class="btn-copy" data-copy="whatsapp">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <label>Email:</label>
+                        <div class="detail-value">
+                            <span class="copyable-text" id="email">naaskky@gmail.com</span>
+                            <button class="btn-copy" data-copy="email">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="contact-note">
+                        <p><strong>Note:</strong> After making the payment, please submit your payment proof via WhatsApp using the form below.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Proof Submission Form -->
+            <div class="card payment-form-card">
+                <h2>Submit Payment Proof on WhatsApp</h2>
+                <p class="form-instruction">Fill in your details below and click the button to submit your payment proof directly on WhatsApp.</p>
+                
+                <form id="paymentProofForm" class="payment-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsappNumber">WhatsApp Number *</label>
+                        <input type="tel" id="whatsappNumber" name="whatsappNumber" required placeholder="+94 75 150 1603">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectedCourse">Course *</label>
+                        <select id="selectedCourse" name="selectedCourse" required>
+                            <option value="">Select a course</option>
+                            <!-- Courses loaded dynamically from Supabase -->
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-whatsapp">
+                        📲 Submit Proof on WhatsApp
+                    </button>
+                </form>
+            </div>
+
+            <!-- Apply Without Payment -->
+            <div class="apply-section">
+                <p class="text-center">Want to apply first before making payment?</p>
+                <div class="text-center">
+                    <a href="application.html" class="btn btn-secondary">Apply Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NAAS Campus</h3>
+                    <p>Empowering students with quality education and practical skills for a successful future.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📞 +94 75 150 1603</p>
+                    <p>✉️ naaskky@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NAAS Campus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Scripts -->
+    <script type="module" src="js/payment.js"></script>
+</body>
+</html>

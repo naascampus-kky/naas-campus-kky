@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - NAAS Campus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/logo.webp" alt="NAAS Campus Logo" class="logo">
+                <h1 class="campus-name">NAAS CAMPUS</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="admission.html" class="nav-link">Admission</a>
+                <a href="updates.html" class="nav-link">Updates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link btn-login">Login</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About NAAS Campus</h1>
+            <p>Learn more about our mission, vision, and values</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>NAAS Campus is a leading educational institution committed to providing quality education and practical skills to students. We believe in empowering individuals through knowledge and training that prepares them for successful careers.</p>
+                    <p>With a focus on industry-relevant curriculum and expert instruction, we have helped countless students achieve their academic and professional goals.</p>
+                </div>
+                <div class="about-image">
+                    <div class="card">
+                        <img src="assets/logo.webp" alt="NAAS Campus" class="full-width-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="card mv-card">
+                    <h2>Our Mission</h2>
+                    <p>To provide accessible, high-quality education that equips students with the knowledge, skills, and confidence to excel in their chosen fields and contribute positively to society.</p>
+                </div>
+                <div class="card mv-card">
+                    <h2>Our Vision</h2>
+                    <p>To be a recognized center of excellence in education, fostering innovation, creativity, and lifelong learning among our students and community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="core-values">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="card value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Excellence</h3>
+                    <p>We strive for the highest standards in education and student support</p>
+                </div>
+                <div class="card value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Integrity</h3>
+                    <p>We maintain honesty and transparency in all our operations</p>
+                </div>
+                <div class="card value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>We embrace new teaching methods and technologies</p>
+                </div>
+                <div class="card value-card">
+                    <div class="value-icon">🌟</div>
+                    <h3>Student-Centered</h3>
+                    <p>We place student success at the heart of everything we do</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NAAS Campus</h3>
+                    <p>Empowering students with quality education and practical skills for a successful future.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📞 +94 75 150 1603</p>
+                    <p>✉️ naaskky@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NAAS Campus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

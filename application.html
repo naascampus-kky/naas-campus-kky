@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Application - NAAS Campus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/logo.webp" alt="NAAS Campus Logo" class="logo">
+                <h1 class="campus-name">NAAS CAMPUS</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="admission.html" class="nav-link">Admission</a>
+                <a href="updates.html" class="nav-link">Updates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link btn-login">Login</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Online Application</h1>
+            <p>Apply for your desired course - No login required</p>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="application-section">
+        <div class="container">
+            <div class="application-container">
+                <div class="card application-card">
+                    <div class="application-header">
+                        <h2>Course Application Form</h2>
+                        <p>Fill in your details below to apply for a course at NAAS Campus</p>
+                    </div>
+
+                    <form id="applicationForm" class="application-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nic">NIC Number *</label>
+                                <input type="text" id="nic" name="nic" required placeholder="123456789V or 123456789012">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="age">Age *</label>
+                                <input type="number" id="age" name="age" required placeholder="Enter your age" min="15" max="100">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender *</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp Number *</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+94 75 150 1603">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course">Select Course *</label>
+                            <select id="course" name="course" required>
+                                <option value="">Choose a course</option>
+                                <!-- Courses loaded dynamically from Supabase -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additionalInfo">Additional Information (Optional)</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any additional information you'd like to share..."></textarea>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span>I agree that the information provided is accurate and complete</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                            <span class="btn-text">Submit Application</span>
+                            <span class="btn-loader" style="display: none;">Submitting...</span>
+                        </button>
+
+                        <div class="success-message" id="successMessage"></div>
+                        <div class="error-message" id="errorMessage"></div>
+                    </form>
+
+                    <div class="application-footer">
+                        <p><strong>What happens next?</strong></p>
+                        <ul>
+                            <li>✓ Your application will be reviewed by our admissions team</li>
+                            <li>✓ You will receive a confirmation email within 24-48 hours</li>
+                            <li>✓ Our team will contact you via WhatsApp for next steps</li>
+                            <li>✓ Payment details will be shared upon approval</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="card info-card">
+                    <h3>Application Guidelines</h3>
+                    <ul>
+                        <li>All fields marked with * are mandatory</li>
+                        <li>Ensure your contact information is accurate</li>
+                        <li>You will receive updates via email and WhatsApp</li>
+                        <li>Application status will be updated within 2 working days</li>
+                        <li>For urgent queries, contact us at +94 75 150 1603</li>
+                    </ul>
+
+                    <div class="info-divider"></div>
+
+                    <h3>Need Help?</h3>
+                    <p>If you have any questions about the application process:</p>
+                    <a href="contact.html" class="btn btn-secondary btn-sm">Contact Us</a>
+                    <a href="https://wa.me/94751501603" class="btn btn-secondary btn-sm" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NAAS Campus</h3>
+                    <p>Empowering students with quality education and practical skills for a successful future.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📞 +94 75 150 1603</p>
+                    <p>✉️ naaskky@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NAAS Campus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Scripts -->
+    <script type="module" src="js/application.js"></script>
+</body>
+</html>

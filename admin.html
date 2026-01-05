@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NAAS Campus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-nav">
+                <div class="logo-container">
+                    <img src="assets/logo.webp" alt="NAAS Campus Logo" class="logo">
+                    <h1>NAAS Admin</h1>
+                </div>
+                <div class="admin-user">
+                    <span id="adminEmail">Admin</span>
+                    <button class="btn btn-secondary btn-sm" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-dashboard">
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="courses">📚 Manage Courses</button>
+                <button class="tab-btn" data-tab="updates">📢 Manage Updates</button>
+                <button class="tab-btn" data-tab="applications">📝 Applications</button>
+            </div>
+
+            <!-- Courses Tab -->
+            <div id="coursesTab" class="tab-content active">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Course Management</h2>
+                        <button class="btn btn-primary" id="addCourseBtn">+ Add New Course</button>
+                    </div>
+
+                    <div class="courses-table-container">
+                        <table class="admin-table" id="coursesTable">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Duration</th>
+                                    <th>Amount (LKR)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coursesTableBody">
+                                <tr>
+                                    <td colspan="5" class="loading">Loading courses...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Updates Tab -->
+            <div id="updatesTab" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Updates Management</h2>
+                        <button class="btn btn-primary" id="addUpdateBtn">+ Add New Update</button>
+                    </div>
+
+                    <div class="updates-table-container">
+                        <table class="admin-table" id="updatesTable">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="updatesTableBody">
+                                <tr>
+                                    <td colspan="4" class="loading">Loading updates...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applicationsTab" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2>Student Applications</h2>
+                        <button class="btn btn-primary" id="exportExcelBtn">📊 Export to Excel</button>
+                    </div>
+
+                    <div class="applications-table-container">
+                        <table class="admin-table" id="applicationsTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>WhatsApp</th>
+                                    <th>Course</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationsTableBody">
+                                <tr>
+                                    <td colspan="7" class="loading">Loading applications...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="courseModalTitle">Add New Course</h2>
+            <form id="courseForm" class="admin-form">
+                <input type="hidden" id="courseId">
+                
+                <div class="form-group">
+                    <label for="courseTitle">Course Title *</label>
+                    <input type="text" id="courseTitle" required placeholder="e.g., Web Development">
+                </div>
+
+                <div class="form-group">
+                    <label for="courseDescription">Short Description *</label>
+                    <textarea id="courseDescription" required rows="3" placeholder="Brief description of the course"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseDuration">Duration *</label>
+                        <input type="text" id="courseDuration" required placeholder="e.g., 6 Months">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseAmount">Amount (LKR) *</label>
+                        <input type="number" id="courseAmount" required placeholder="e.g., 25000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseImage">Course Image *</label>
+                    <input type="file" id="courseImage" accept="image/*">
+                    <small>Upload a square image (1:1 ratio recommended)</small>
+                    <div id="currentImage" style="display: none; margin-top: 10px;">
+                        <img id="currentImagePreview" style="max-width: 200px; border-radius: 8px;" alt="Current image">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseSyllabus">Full Syllabus / Details *</label>
+                    <textarea id="courseSyllabus" required rows="6" placeholder="Enter complete course details, eligibility, certificate info, mode (Online/Physical), etc."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelCourseBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveCourseBtn">
+                        <span class="btn-text">Save Course</span>
+                        <span class="btn-loader" style="display: none;">Saving...</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="updateModalTitle">Add New Update</h2>
+            <form id="updateForm" class="admin-form">
+                <input type="hidden" id="updateId">
+                
+                <div class="form-group">
+                    <label for="updateTitle">Update Title *</label>
+                    <input type="text" id="updateTitle" required placeholder="e.g., New Course Launch">
+                </div>
+
+                <div class="form-group">
+                    <label for="updateDescription">Description *</label>
+                    <textarea id="updateDescription" required rows="4" placeholder="Description of the update"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="updateImage">Update Image (1:1 ratio) *</label>
+                    <input type="file" id="updateImage" accept="image/*">
+                    <small>Upload a square image for best display</small>
+                    <div id="currentUpdateImage" style="display: none; margin-top: 10px;">
+                        <img id="currentUpdateImagePreview" style="max-width: 200px; border-radius: 8px;" alt="Current image">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelUpdateBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveUpdateBtn">
+                        <span class="btn-text">Save Update</span>
+                        <span class="btn-loader" style="display: none;">Saving...</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- SheetJS for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Scripts -->
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

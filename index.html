@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAAS Campus - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+```html
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+```
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/logo.webp" alt="NAAS Campus Logo" class="logo">
+                <h1 class="campus-name">NAAS CAMPUS</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="admission.html" class="nav-link">Admission</a>
+                <a href="updates.html" class="nav-link">Updates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link btn-login">Login</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Welcome to NAAS Campus</h2>
+                <p class="hero-subtitle">Empowering Your Future Through Quality Education</p>
+                <div class="hero-buttons">
+                    <a href="courses.html" class="btn btn-primary">Explore Courses</a>
+                    <a href="application.html" class="btn btn-secondary">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="nav-cards">
+        <div class="container">
+            <div class="cards-grid">
+                <a href="index.html" class="card nav-card">
+                    <div class="card-icon">🏠</div>
+                    <h3>Home</h3>
+                    <p>Campus Dashboard</p>
+                </a>
+                <a href="courses.html" class="card nav-card">
+                    <div class="card-icon">📚</div>
+                    <h3>Courses</h3>
+                    <p>Browse Programs</p>
+                </a>
+                <a href="updates.html" class="card nav-card">
+                    <div class="card-icon">📢</div>
+                    <h3>New Updates</h3>
+                    <p>Latest News</p>
+                </a>
+                <a href="admission.html" class="card nav-card">
+                    <div class="card-icon">💳</div>
+                    <h3>Payment Portal</h3>
+                    <p>Make Payment</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Courses Section -->
+    <section class="popular-courses">
+        <div class="container">
+            <h2 class="section-title">Popular Courses</h2>
+            <div class="courses-grid" id="popularCoursesGrid">
+                <!-- Courses loaded dynamically from Supabase -->
+                <div class="loading">Loading courses...</div>
+            </div>
+            <div class="text-center">
+                <a href="courses.html" class="btn btn-primary">View All Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Updates Section -->
+    <section class="latest-updates">
+        <div class="container">
+            <h2 class="section-title">Latest Campus Updates</h2>
+            <div class="updates-scroll-container">
+                <div class="updates-scroll" id="updatesScroll">
+                    <!-- Updates loaded dynamically and auto-scroll -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose NAAS Campus -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose NAAS Campus</h2>
+            <div class="features-grid">
+                <div class="card feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Quality Education</h3>
+                    <p>Industry-standard curriculum designed for real-world success</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from experienced professionals in their fields</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Career Support</h3>
+                    <p>Guidance and placement assistance for your career</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Flexible Learning</h3>
+                    <p>Online and physical classes to suit your schedule</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>Certified Programs</h3>
+                    <p>Recognized certificates upon course completion</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Affordable Fees</h3>
+                    <p>Quality education at competitive pricing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NAAS Campus</h3>
+                    <p>Empowering students with quality education and practical skills for a successful future.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📞 +94 75 150 1603</p>
+                    <p>✉️ naaskky@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NAAS Campus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Create a square logo file (500x500px) and save it as assets/logo.webp
